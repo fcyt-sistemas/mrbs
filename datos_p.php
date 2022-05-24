@@ -15,9 +15,15 @@ $hora_atras = 1;
 
     $resultado = mysqli_query( $conexion , $sql ) or die ( "Algo Falla en la consulta a la base de datos");
 
-    while ($data = mysqli_fetch_object( $resultado )){
 
-            for($j=0; ; $j++){
+    echo "<pre>$sql</pre>";$data = mysqli_fetch_object( $resultado );
+    print_r($data);
+
+
+    while ($data = mysqli_fetch_object( $resultado )){
+        
+
+            for($j=0; $j!=$data; $j++){
                 $horario[0][$j]=$data->hora_ini->$data->hora_fin;
                 $horario[1][$j]=$data->actividad_breve;
 			    if ($data->type == "E") 

@@ -1,0 +1,24 @@
+table {
+    color: black;
+    border-color:black;
+    border-collapse: collapse;
+ }
+ th {
+    text-align: center;
+    color: rgb(232, 228, 237);
+    font: condensed 120% sans-serif;
+    font-size: large;
+    background-color:rgb(43, 82, 133);
+ }
+ td{
+     text-align: center;
+     color: black;
+     font: bold 90%;
+ }
+ .contenedor {
+    width:80%;
+    max-width: 3000px;
+    min-width: none;
+    margin:0 auto;
+    overflow:hidden;
+ }
