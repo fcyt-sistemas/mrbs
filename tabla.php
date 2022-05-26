@@ -53,9 +53,40 @@ $resultado = mysqli_query( $conexion , $sql ) or die ( "Algo Falla en la consult
   
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
-    <link href="estilos.css" rel="stylesheet" type="text/css">
     
     <title>HORARIOS</title>
+    <style>
+        table {
+            color: black;
+            border-color:black;
+            border-collapse: collapse;
+        }
+        th {
+            text-align: center;
+            color: rgb(232, 228, 237);
+            font: condensed 120% sans-serif;
+            font-size: large;
+            background-color:rgb(43, 82, 133);
+        }
+        td{
+            text-align: center;
+            color: black;
+            font: bold 90%;
+        }
+        .contenedor {
+            width:100%;
+            max-width: 3000px;
+            min-width: none;
+            margin:0 auto;
+            overflow:hidden;
+        }
+        body {
+            margin-top: 12px;
+            margin-right: 12px;
+            margin-bottom: 8px;
+            margin-left: 12px;
+        }
+    </style>
 </head>
 <body>
 <img width='200px' src='SmartTab/skins/tango/fcyt-logo.jpg'></img>
