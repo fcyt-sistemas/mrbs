@@ -16,9 +16,17 @@ table {
      font: bold 90%;
  }
  .contenedor {
-    width:80%;
+    width:100%;
     max-width: 3000px;
     min-width: none;
     margin:0 auto;
     overflow:hidden;
  }
+ body {
+   margin-top: 12px;
+   margin-right: 12px;
+   margin-bottom: 8px;
+   margin-left: 12px;
+ }
+
+
