@@ -8,7 +8,7 @@
 	$basededatos = 'mrbs';
 
 
-$conexion = new mysqli('172.17.0.2', $usuario, $password, $basededatos, 3306);
+$conexion = new mysqli($servidor, $usuario, $password, $basededatos, 3306);
 if ($conexion->connect_errno) {
     echo "Fallo al conectar a MySQL: (" . $conexion->connect_errno . ") " . $conexion->connect_error;
 }
