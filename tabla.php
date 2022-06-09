@@ -3,19 +3,19 @@ include "conexion.php";
 echo "<div align='center' style='background-color: #FDFEFE'>";
 echo "<table>";
 echo "<tr>";
-echo "<td rowspan='2' width='50' align='left'><img width='200px' src='SmartTab/skins/tango/fcyt-logo.jpg'></td>";
-echo "<td width='1090'><img width='300%' border='0' src='SmartTab/skins/tango/barra-fcyt.png'>";
+echo "<td width='1090'><img width='120%' border='0' src='SmartTab/skins/tango/barra-fcyt.png'>";
 echo "<td rowspan='2' width='200'><p align='center'" . $fecha . "</td>";
 echo "</tr>";
 echo "</table>";
 $hora_atras = 1;
 $hora_siguientes = 2;
 $ahora = time();
-$desde = $ahora - ($hora_atras * 60 * 60); // en segundos
-$hasta  = $ahora + ($hora_siguientes * 60 * 60); // en segundos
+//$desde = date("d")+date('G');
+$desde = mktime(0, 0, 0, date('n'), date('j'), date('Y')); //$ahora;- ($hora_atras * 60 * 60); // en segundos
+$hasta  = mktime(23, 59, 0, date('n'), date('j'), date('Y'));//$ahora + ($hora_siguientes * 60 * 60); // en segundos
 
 date_default_timezone_set('America/Araguaina');
-date_default_timezone_set("UTC");
+//date_default_timezone_set("UTC");
 $fecha = date('d/m/Y');
 $horacompleta = date('H : i');
 $hactual= date('H');
@@ -26,11 +26,12 @@ if ($hfinrango == "24")
 	{$hfinrango= "00";}
 $rangoini= $hinirango.":".$minactual;
 $rangofin= $hfinrango.":".$minactual;
-	
+
 $sql  = "SELECT R.room_name AS sala, start_time AS hora_ini, end_time AS hora_fin, name AS actividad_breve, E.description AS actividad, E.status AS estado, A.area_name AS area, E.type ";
 $sql .= "FROM mrbs_entry E, mrbs_room R, mrbs_area A ";
 $sql .= "WHERE E.room_id = R.id AND ";
 $sql .= "R.area_id = A.id AND ";
+//$sql .=  "timestamp >= '2022-06-08 00:00:00' AND timestamp <= '2022-06-08 23:59:00'";
 $sql .= "((start_time > $desde AND start_time < $hasta) OR (end_time > $desde AND end_time < $hasta) OR ";
 $sql .= "(start_time < $desde AND end_time > $hasta)) ORDER BY start_time";
 
@@ -93,7 +94,7 @@ $resultado = mysqli_query( $conexion , $sql ) or die ( "Algo Falla en la consult
 <img width='200px' src='SmartTab/skins/tango/fcyt-logo.jpg'></img>
 <?php 
 //echo "<b align='center' class='titulo_b'>" . $fecha . "</b>";
-echo "<h2 class='titulo'>&nbsp;&nbsp;Actividades en curso en el dia $fecha</h2>" ;
+echo "<h2 align='center' class='titulo'>&nbsp;&nbsp;Actividades en curso en el dia $fecha</h2>" ;
 ?>
 <TABLE BORDER ALIGN="center" width="100%">
    
