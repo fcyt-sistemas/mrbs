@@ -70,6 +70,14 @@ $resultado = mysqli_query( $conexion , $sql ) or die ( "Algo Falla en la consult
             font-size: large;
             background-color:rgb(43, 82, 133);
         }
+        <?php if ($data->estado == "4") {echo "<span class='ausente'> (SUSPENDIDO)</span>"; ?>
+        td{
+            text-align: center;
+            color: red;
+            font: bold 90%;
+        }
+        <?php } ?>
+
         td{
             text-align: center;
             color: black;
@@ -99,12 +107,10 @@ echo "<h2 align='center' class='titulo'>&nbsp;&nbsp;Actividades en curso en el d
 <TABLE BORDER ALIGN="center" width="100%">
    
     <TR color="red">
-		<TH>HORA</TH>
+		<TH>HORA ENTRADA</TH>
 		<TH>MATERIA</TH>
 		<TH>CARRERA</TH>
-        <TH>ALA</TH>
         <TH>AULA</TH>
-        <TH>DOCENTE</TH>
 	</TR>
     <?php while ($data = mysqli_fetch_object($resultado)){ ?>
     <TR>
@@ -112,7 +118,7 @@ echo "<h2 align='center' class='titulo'>&nbsp;&nbsp;Actividades en curso en el d
             <?php 
                 $hora_ini = date('H:i', $data->hora_ini);
                 $hora_fin = date('H:i', $data->hora_fin);	
-                echo "($hora_ini - $hora_fin)";
+                echo "($hora_ini)";
             ?>
         </TD>
         <TD>
@@ -185,15 +191,12 @@ echo "<h2 align='center' class='titulo'>&nbsp;&nbsp;Actividades en curso en el d
                 }
             }  
         ?>
-
+        
         </TD>
-        <TD><?php echo htmlentities($data->area);  ?></TD>
-        <TD><?php echo htmlentities($data->sala);  ?></TD>
-        <TD>
-            <?php 
-                echo htmlentities($data->actividad); 
-                if ($data->estado == "4") {echo "<span class='ausente'> (SUSPENDIDO)</span>";}
+        <TD><?php echo htmlentities($data->sala); 
+            if ($data->estado == "4") {echo "<span class='ausente'> (SUSPENDIDO)</span>";} 
             ?>
+        
         </TD>
     </TR>
     <?php } ?>
