@@ -67,21 +67,14 @@ $resultado = mysqli_query( $conexion , $sql ) or die ( "Algo Falla en la consult
             text-align: center;
             color: rgb(232, 228, 237);
             font: condensed 120% sans-serif;
-            font-size: large;
+            font-size: 15px;
             background-color:rgb(43, 82, 133);
         }
-        <?php if ($data->estado == "4") {echo "<span class='ausente'> (SUSPENDIDO)</span>"; ?>
         td{
-            text-align: center;
-            color: red;
+            /*text-align: center;
+            color: black;*/
             font: bold 90%;
-        }
-        <?php } ?>
-
-        td{
-            text-align: center;
-            color: black;
-            font: bold 90%;
+            font-size: 12px
         }
         .contenedor {
             width:100%;
@@ -107,94 +100,112 @@ echo "<h2 align='center' class='titulo'>&nbsp;&nbsp;Actividades en curso en el d
 <TABLE BORDER ALIGN="center" width="100%">
    
     <TR color="red">
-		<TH>HORA ENTRADA</TH>
+		<TH>ENTRADA</TH>
 		<TH>MATERIA</TH>
-		<TH>CARRERA</TH>
         <TH>AULA</TH>
 	</TR>
     <?php while ($data = mysqli_fetch_object($resultado)){ ?>
-    <TR>
-         <TD>
+    <TR <?php if ($data->estado == "4") {echo " style='color: #FFF; background-color:red; font-weight: bold;'";} ?> >
+         <TD style="text-align: center;">
             <?php 
                 $hora_ini = date('H:i', $data->hora_ini);
                 $hora_fin = date('H:i', $data->hora_fin);	
                 echo "($hora_ini)";
             ?>
         </TD>
-        <TD>
+        <TD style="text-align: left;">
             <?php 
               echo htmlentities (" $data->actividad_breve ");  		
             ?>
-        </TD>
-        <TD>
+        <br>
         <?php
+          echo "<span style='font-weight: 700; color: #999999;'>";
             if ($data->type == "E") 
-            {echo "<span class='titulo_actividad'> - (EVENTO EXTERNO) - </span>";}
+            {echo "(EVENTO EXTERNO)";}
             else {
                 switch ($data->type) {
                   case "I":
 
-                    echo " P. Matemática ";
+                    echo " P. Matemática 
+                    ";
                      break;
                  case "F":
 
-                     echo " P. Física ";
+                     echo " P. Física 
+                     ";
                      break;
                     case "Q":
 
-                     echo " P. Química ";
+                     echo " P. Química 
+                     ";
                      break;
                  case "T":
 
-                     echo " P. Edu.Tecnológica ";
+                     echo " P. Edu.Tecnológica 
+                     ";
                      break;
                  case "B":
 
-                    echo " P. Biología ";
+                    echo " P. Biología 
+                    ";
                      break;
                  case "G":
 
-                     echo " Lic. Biología ";
+                     echo " Lic. Biología 
+                     ";
                      break;
                     case "A":
 
-                     echo " Analista en Sistemas ";
+                     echo " Analista en Sistemas 
+                     ";
                      break;
                  case "L":
 
-                     echo " T. Balística ";
+                     echo " T. Balística 
+                     ";
                      break;
                  case "P":
 
-                     echo " T. Papiloscopía";
+                     echo " T. Papiloscopía 
+                     ";
                      break;
                  case "D":
 
-                     echo " T. Documentología ";
+                     echo " T. Documentología 
+                     ";
                      break;
                  case "S":
 
-                    echo " Lic. en Sistemas de Información ";
+                    echo " Lic. en Sistemas de Información 
+                    ";
                      break;
                  case "C":
 
-                     echo " Lic. Criminalística ";
+                     echo " Lic. Criminalística 
+                     ";
                      break;
                     case "V":
 
-                     echo " Lic. Accidentología V. ";
+                     echo " Lic. Accidentología V. 
+                     ";
                      break;
                  case "Z":
 
-                     echo " Carreras Compartidas ";
+                     echo " Carreras Compartidas 
+                     ";
                      break;
                 }
-            }  
+            }
+            echo "</span>";
         ?>
         
         </TD>
-        <TD><?php echo htmlentities($data->sala); 
-            if ($data->estado == "4") {echo "<span class='ausente'> (SUSPENDIDO)</span>";} 
+        <TD style="text-align: center;" >
+            <?php 
+                if ($data->estado == "4") {echo "<span style='color: black;'> (SUSPENDIDO)</span>";}
+                else{
+                    echo htmlentities($data->sala); 
+                }
             ?>
         
         </TD>
