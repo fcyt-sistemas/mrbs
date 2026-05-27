@@ -1,0 +1,30 @@
+services:
+    mrbs:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: mrbs
+        ports:
+            - "8080:80"
+        volumes:
+            - ./mrbs-code/web:/var/www/html/
+            - ./mrbs-code/docker_app/php/config.inc.php:/var/www/html/config.inc.php
+        restart: unless-stopped
+    db:
+        image: mysql:8.0
+        container_name: mrbs_db
+        ports:
+            - "3306:3306"
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_DATABASE: mrbs
+            MYSQL_USER: mrbs
+            MYSQL_PASSWORD: mrbs
+            MYSQL_ROOT_PASSWORD: mrbs
+        volumes:
+            # ONLY include the line below on a fresh installation. Remove/comment it out if upgrading/migrating:
+            - ./mrbs-code/tables.my.sql:/docker-entrypoint-initdb.d/010-tables.sql
+            - persistent:/var/lib/mysql
+        restart: unless-stopped
+volumes:
+    persistent:
