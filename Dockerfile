@@ -5,6 +5,7 @@ RUN apk update && apk upgrade && apk add --no-cache \
     icu-dev \
     icu-data-full \
  && docker-php-ext-install mysqli pdo pdo_mysql intl \
+ && apk del tar curl libcurl \
  && mkdir -p /run/nginx
 
 COPY nginx-default.conf /etc/nginx/http.d/default.conf
