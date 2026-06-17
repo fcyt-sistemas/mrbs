@@ -1,4 +1,4 @@
-FROM php:8.4-fpm-alpine
+FROM php:8.5-fpm-alpine
 
 RUN apk update && apk upgrade && apk add --no-cache \
     nginx \
@@ -6,6 +6,7 @@ RUN apk update && apk upgrade && apk add --no-cache \
     icu-data-full \
  && docker-php-ext-install mysqli pdo pdo_mysql intl \
  && apk del tar curl libcurl \
+ && rm -f /usr/bin/wget \
  && mkdir -p /run/nginx
 
 COPY nginx-default.conf /etc/nginx/http.d/default.conf
